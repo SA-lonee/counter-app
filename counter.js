@@ -1,69 +1,94 @@
+// Load saved count
+let count = localStorage.getItem("count")
+    ? parseInt(localStorage.getItem("count"))
+    : 0;
 
-let button1 = document.getElementById("inBtn");
-let button2 = document.getElementById("deBtn");
-let button3 = document.getElementById("reset");
-let button4 = document.getElementById("themeBtn");
-let text = document.getElementById("text");
+const countDisplay = document.getElementById("text");
+const increaseBtn = document.getElementById("inBtn");
+const decreaseBtn = document.getElementById("deBtn");
+const resetBtn = document.getElementById("reset");
+const toggleThemeBtn = document.getElementById("themeBtn");
 
-let count = 0;
-let min = -10;
-let max = 10;
+const MAX = 10;
+const MIN = -10;
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowUp") button1.click();
-    if (event.key === "ArrowDown") button2.click();
-    if (event.key === "Enter") button3.click();
-});
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+}
 
-button1.addEventListener("click", function() {
-    if (count < max) {
+// Update display
+function updateDisplay(type = "") {
+    countDisplay.textContent = count;
+
+    // Save count
+    localStorage.setItem("count", count);
+
+    // Color logic
+    if (type === "increase") {
+        countDisplay.style.color = "#2e7d32"; // green
+    } else if (type === "decrease") {
+        countDisplay.style.color = "#c62828"; // red
+    } else {
+        countDisplay.style.color = "";
+    }
+
+    // Animation
+    countDisplay.style.transform = "scale(1.2)";
+    setTimeout(() => {
+        countDisplay.style.transform = "scale(1)";
+    }, 150);
+}
+
+// Show initial value
+updateDisplay();
+
+// Increase
+increaseBtn.addEventListener("click", () => {
+    if (count < MAX) {
         count++;
-        updateDisplay();
+        updateDisplay("increase");
     }
 });
 
-button2.addEventListener("click", function() {
-    if (count > min) {
+// Decrease
+decreaseBtn.addEventListener("click", () => {
+    if (count > MIN) {
         count--;
-        updateDisplay();
+        updateDisplay("decrease");
     }
 });
 
-button3.addEventListener("click", function() {
+// Reset
+resetBtn.addEventListener("click", () => {
     count = 0;
     updateDisplay();
 });
 
-button4.addEventListener("click", function() {
-    document.body.classList.toggle("light");
+// Keyboard Support
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp" && count < MAX) {
+        count++;
+        updateDisplay("increase");
+    }
+    if (event.key === "ArrowDown" && count > MIN) {
+        count--;
+        updateDisplay("decrease");
+    }
+    if (event.key === "Enter") {
+        count = 0;
+        updateDisplay();
+    }
 });
 
-function updateDisplay(){
-    text.style.opacity = "0";
-    text.style.transform = "translateY(10px)";
+// Theme toggle
+toggleThemeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
 
-    setTimeout(() => {
-        text.innerText = count;
-        text.style.opacity = "1";
-        text.style.transform = "translateY(0)";
-    }, 150);
-
-    updateColor();
-
-    button1.disabled = count >= max;
-    button2.disabled = count <= min;
-}
-
-function updateColor() {
-    if(count > 0){
-        text.style.color = "#c89f7a";
+    if (document.body.classList.contains("light")) {
+        localStorage.setItem("theme", "light");
+    } else {
+        localStorage.setItem("theme", "dark");
     }
-    else if(count < 0){
-        text.style.color = "#b35c44";
-    }
-    else{
-        text.style.color = "";
-    }
-}
+});
 
-updateDisplay();
