@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple Counter</title>
+<title>Café Counter</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="counter.css">
+
 </head>
+
 <body>
 
-  <h1>Counter App</h1>
-  <h2 id="count">0</h2>
+<div class="container">
 
-  <button onclick="increase()">+</button>
-  <button onclick="decrease()">-</button>
+    <div class="cup-container">
+        <div class="steam"></div>
+        <div class="cup">☕</div>
+    </div>
 
-  <script>
-    let count = 0;
-
-    function increase() {
-      count++;
-      document.getElementById("count").innerText = count;
-    }
-
-    function decrease() {
-      count--;
-      document.getElementById("count").innerText = count;
-    }
-  </script>
+    <h1>Counter</h1>
+    <p id="text">0</p>
+    <button id="inBtn">Increase</button>
+    <button id="deBtn">Decrease</button>
+    <button id="reset">Reset</button>
+    <button id="themeBtn">Toggle Theme</button>
+</div>
+<script src="counter.js"></script>
 
 </body>
 </html>
