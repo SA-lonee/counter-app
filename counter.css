@@ -1,0 +1,185 @@
+
+/* ☕ Cup + Steam Container */
+.cup-container {
+    position: relative;
+    width: 100px;
+    margin: 0 auto 15px;
+}
+
+/* Cup */
+.cup {
+    font-size: 70px;
+}
+
+/* Steam positioned above cup */
+.steam {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 50px;
+}
+
+.steam::before,
+.steam::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 6px;
+    height: 35px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    animation: steamRise 3s infinite ease-in-out;
+    transform: translateX(-50%);
+}
+
+.steam::after {
+    animation-delay: 1.5s;
+}
+
+body.light .steam::before,
+body.light .steam::after {
+    background: rgba(120, 80, 50, 0.35);
+}
+
+@keyframes steamRise {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 10px) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -30px) scale(1.2);
+    }
+}
+
+/* 🌍 Body */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* 🌞 Light Mode */
+body.light {
+    background:
+        radial-gradient(circle at top left, #fdf6ec, #e8d8c3),
+        url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    color: #4b2e2e;
+}
+
+/* 🌙 Dark Mode */
+body:not(.light) {
+    background: linear-gradient(135deg, #2b1d17, #1a120e);
+    color: #f5e6d3;
+}
+
+/* 📦 Container */
+.container {
+    text-align: center;
+    padding: 50px;
+    border-radius: 25px;
+    animation: fadeIn 1s ease forwards;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.25);
+}
+
+body.light .container {
+    background: rgba(255, 248, 240, 0.95);
+    box-shadow:
+        0 25px 50px rgba(120, 80, 50, 0.15),
+        inset 0 2px 6px rgba(255,255,255,0.6);
+}
+
+body:not(.light) .container {
+    background: rgba(45, 30, 22, 0.92);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+}
+
+/* 📝 Heading */
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* 🔢 Counter Number */
+#text {
+    font-size: 70px;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+body:not(.light) #text {
+    text-shadow: 0 6px 20px rgba(200, 159, 122, 0.35);
+}
+
+/* 🔘 Buttons */
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.25s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.5s forwards;
+    letter-spacing: 1px;
+}
+
+button:nth-child(5) { animation-delay: 0.2s; }
+button:nth-child(6) { animation-delay: 0.4s; }
+button:nth-child(7) { animation-delay: 0.6s; }
+button:nth-child(8) { animation-delay: 0.8s; }
+
+body.light button {
+    background: linear-gradient(145deg, #e6d5bd, #d4c2a8);
+    color: #5c3d2e;
+}
+
+body.light button:hover {
+    transform: scale(1.08);
+}
+
+body:not(.light) button {
+    background: #6f4e37;
+    color: #fdf6ec;
+}
+
+body:not(.light) button:hover {
+    background: #8b5e3c;
+    transform: scale(1.08);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* ✨ Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
