@@ -16,3 +16,5 @@ https://sa-lonee.github.io/counter-app/
 - HTML
 - CSS
 - JavaScript
+- Upgrade counter app with localStorage, limits, color feedback & theme persistence
+
