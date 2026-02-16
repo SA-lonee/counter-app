@@ -1,13 +1,17 @@
 # ☕ Café Counter App
 
-A simple interactive counter app built using HTML, CSS, and JavaScript.
+A stylish interactive counter app built using HTML, CSS, and JavaScript.
 
 ## ✨ Features
 - Increase / Decrease Counter
+- Limit from -10 to 10
+- Color feedback (Green ↑ / Red ↓)
 - Reset Function
-- Keyboard Support
-- Dark Mode Toggle
-- Smooth Animations
+- Dark / Light Theme Toggle
+- Theme persistence
+- Counter persistence using localStorage
+- Keyboard support (↑ ↓ Enter)
+- Animated UI & steam effect ☕
 
 ## 🚀 Live Demo
 https://sa-lonee.github.io/counter-app/
@@ -16,5 +20,6 @@ https://sa-lonee.github.io/counter-app/
 - HTML
 - CSS
 - JavaScript
-- Upgrade counter app with localStorage, limits, color feedback & theme persistence
+- GitHub Pages
+
 
